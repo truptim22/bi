@@ -1,4 +1,4 @@
-
+# NAIVE BAYES 
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import GaussianNB
@@ -18,7 +18,7 @@ model.fit(X_train, y_train)
 y_pred = model.predict(X_test)
 print("Accuracy:", accuracy_score(y_test, y_pred) * 100, "%")
 
-
+#SVM
 from sklearn import svm, datasets
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
@@ -52,7 +52,7 @@ plt.ylabel('Sepal Width')
 plt.title("SVM Classification")
 plt.show()
 
-
+#K-MEANS
 import matplotlib.pyplot as plt
 import pandas as pd
 from sklearn.cluster import KMeans
@@ -83,7 +83,7 @@ plt.ylabel('Spending Score (1-100)')
 plt.legend()
 plt.show()
 
-
+#HIERARCHICAL CLUSTERING
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -115,7 +115,7 @@ plt.legend()
 plt.show()
 
 
-
+#DATA ANALYSIS
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -136,6 +136,39 @@ df.plot(x='Subject', y='Grade', marker='s', color='blue', ax=ax, label='Grade')
 plt.xlabel("Subjects")
 plt.ylabel("Values")
 plt.title("Stress and Grades per Subject")
+plt.show()
+
+
+#LINEAR REGRESSION
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+
+# Load dataset
+data = pd.read_csv("salary_data.csv")
+X, y = data.iloc[:, :-1].values, data.iloc[:, -1].values
+
+# Split data
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=1/3, random_state=0)
+
+# Train model
+model = LinearRegression().fit(X_train, y_train)
+
+# Plot training results
+plt.scatter(X_train, y_train, color="green")
+plt.plot(X_train, model.predict(X_train), color="red")
+plt.title("Salary vs Experience (Training)")
+plt.xlabel("Years of Experience")
+plt.ylabel("Salary")
+plt.show()
+
+# Plot test results
+plt.scatter(X_test, y_test, color="blue")
+plt.plot(X_train, model.predict(X_train), color="red")
+plt.title("Salary vs Experience (Test)")
+plt.xlabel("Years of Experience")
+plt.ylabel("Salary")
 plt.show()
 
 
