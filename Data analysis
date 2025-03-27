@@ -1,0 +1,17 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+subjects = ['Math', 'English', 'History', 'Chem', 'Geo', 'Physics', 'Bio', 'CS']
+stress = [9, 3, 5, 1, 8, 5, 10, 2]
+grades = [15, 10, 7, 8, 11, 8, 17, 20]
+
+df = pd.DataFrame({'Subject': subjects, 'Stress': stress, 'Grade': grades})
+
+ax = plt.gca()
+df.plot(x='Subject', y='Stress', marker='o', color='red', ax=ax, label='Stress')
+df.plot(x='Subject', y='Grade', marker='s', color='blue', ax=ax, label='Grade')
+
+plt.xlabel("Subjects")
+plt.ylabel("Values")
+plt.title("Stress and Grades per Subject")
+plt.show()
