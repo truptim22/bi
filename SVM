@@ -1,0 +1,33 @@
+#SVM
+from sklearn import svm, datasets
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+import numpy as np
+
+# Load dataset (only first two features)
+X, y = datasets.load_iris(return_X_y=True)
+X = X[:, :2]  # Select only Sepal Length & Sepal Width
+
+# Split data into training & testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
+
+# Train SVM model
+model = svm.SVC(kernel="linear", C=1)
+model.fit(X_train, y_train)
+
+# Print accuracy
+print("Accuracy:", accuracy_score(y_test, model.predict(X_test)) * 100, "%")
+
+# Plot decision boundary
+xx, yy = np.meshgrid(np.linspace(X[:, 0].min()-1, X[:, 0].max()+1, 100),
+                     np.linspace(X[:, 1].min()-1, X[:, 1].max()+1, 100))
+
+Z = model.predict(np.c_[xx.ravel(), yy.ravel()]).reshape(xx.shape)
+
+plt.contourf(xx, yy, Z, alpha=0.3, cmap=plt.cm.coolwarm)
+plt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.coolwarm)
+plt.xlabel('Sepal Length')
+plt.ylabel('Sepal Width')
+plt.title("SVM Classification")
+plt.show()
