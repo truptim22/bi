@@ -1,0 +1,39 @@
+import numpy as np
+
+import pandas as pd
+
+from sklearn.feature_extraction.text import CountVectorizer
+
+from sklearn.naive_bayes import MultinomialNB
+
+df=pd.read_csv('/content/spam1.csv',encoding='latin-1')
+
+df=df[['Message','Category']]
+
+df.columns=['SMS','Type']
+
+countvec=CountVectorizer(ngram_range=(1,4),stop_words='english',strip_acce
+
+nts='unicode',max_features=1000)
+
+bow =countvec.fit_transform(df.SMS)
+
+X_train=bow.toarray()
+
+Y_train=df.Type.values
+
+mnb=MultinomialNB()
+
+mnb.fit(X_train,Y_train)
+
+text1=countvec.transform(['Free gifts for all'])
+
+print('Free gift for all')
+
+print(mnb.predict(text1))
+
+text2=countvec.transform(['We will go for a lunch'])
+
+print('We will go for a lunch')
+
+print(mnb.predict(text2))
