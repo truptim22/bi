@@ -2,18 +2,11 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
-
-# Load dataset
 data = pd.read_csv("salary_data.csv")
 X, y = data.iloc[:, :-1].values, data.iloc[:, -1].values
-
-# Split data
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=1/3, random_state=0)
 
-# Train model
 model = LinearRegression().fit(X_train, y_train)
-
-# Plot training results
 plt.scatter(X_train, y_train, color="green")
 plt.plot(X_train, model.predict(X_train), color="red")
 plt.title("Salary vs Experience (Training)")
@@ -21,7 +14,6 @@ plt.xlabel("Years of Experience")
 plt.ylabel("Salary")
 plt.show()
 
-# Plot test results
 plt.scatter(X_test, y_test, color="blue")
 plt.plot(X_train, model.predict(X_train), color="red")
 plt.title("Salary vs Experience (Test)")
