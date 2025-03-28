@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# Take user input
+echo "Enter percentage:"
+read per
+
+# Check grading conditions
+if [ $per -lt 35 ]; then
+    echo "Grade = Fail"
+elif [ $per -ge 35 -a $per -lt 45 ]; then
+    echo "Grade = Third"
+elif [ $per -ge 45 -a $per -lt 60 ]; then
+    echo "Grade = Second"
+elif [ $per -ge 60 -a $per -lt 75 ]; then
+    echo "Grade = First"
+elif [ $per -ge 75 ]; then
+    echo "Grade = First D"
+fi
+
+
+  
+#!/bin/bash
+
+echo "Enter the Word:"
+read str
+
+case $str in
+    [aeiou]*) echo "The word begins with a vowel";;
+    [0-9]*) echo "The word begins with a digit";;
+    *[0-9]) echo "The word ends with a digit";;
+    ???? ) echo "The word entered is a 4-letter word";;
+    *) echo "The word entered either starts with a consonant or is incorrect input";;
+esac
+
+
+#!/bin/bash
+echo "Enter a number: "
+read n
+sum=0
+i=1
+while [ $i -le $n ]; do
+    sum=$((sum + i))
+    i=$((i + 1))
+done
+echo "Sum: $sum"
+
+  
